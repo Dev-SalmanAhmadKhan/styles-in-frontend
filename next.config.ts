@@ -1,7 +1,20 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  output: "export",
+  devIndicators: false,
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    unoptimized: true,
+
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ecom.aliusama.dev",
+        pathname: "/storage/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

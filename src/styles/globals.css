@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color definitions */
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-primary: rgb(var(--primary));
+  --color-yellow-primary: rgb(var(--yellow-primary));
+  --color-textPrimary: rgb(var(--textPrimary));
+  --color-textSecondary: rgb(var(--textSecondary));
+  --color-greyBgDark: rgb(var(--greyBgDark));
+
+  /* Font definitions */
+  --font-family-philosopher: var(--font-philosopher-regular), serif;
+  --font-family-philosopher-bold: var(--font-philosopher-bold), serif;
+  --font-family-poppins: var(--font-poppins-regular), sans-serif;
+  --font-family-poppins-medium: var(--font-poppins-medium), sans-serif;
+
+  /* Animation definitions */
+  --animation-fade-in-up: fadeInUp 0.6s ease-out;
+  --animation-fade-in: fadeIn 0.4s ease-in;
+  --animation-bounce: bounce 2s infinite;
+  --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animation-text-glow: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes textGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgb(var(--primary) / 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgb(var(--primary) / 0.5);
+  }
+}
+
+@layer base {
+  :root {
+    /* Custom properties */
+    --background: 255 255 255;
+    --foreground: 23 23 23;
+    --primary: 164 114 52;
+    --yellow-primary: 218 182 93;
+    --textPrimary: 92 75 54;
+    --textSecondary: 63 15 15;
+    --greyBgDark: 217 217 217;
+
+    /* Font variables */
+    --font-philosopher-regular: "Philosopher";
+    --font-philosopher-bold: "Philosopher";
+    --font-poppins-regular: "Poppins";
+    --font-poppins-medium: "Poppins";
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 10 10 10;
+      --foreground: 237 237 237;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family-poppins), sans-serif;
+    max-width: 100vw !important;
+    scroll-behavior: smooth !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-philosopher-bold), serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .font-philosopher {
+    font-family: var(--font-family-philosopher);
+  }
+  .font-philosopher-bold {
+    font-family: var(--font-family-philosopher-bold);
+    font-weight: 700;
+  }
+  .font-poppins-medium {
+    font-family: var(--font-family-poppins-medium);
+    font-weight: 500;
+  }
+  .nav-height {
+    height: 101px !important;
+  }
+
+  /* Animation utilities */
+
+  .animate-pulse {
+    animation: var(--animation-pulse);
+  }
+  .animate-text-glow {
+    animation: var(--animation-text-glow);
+  }
+
+  /* Custom animation extensions */
+  .animate-gradient-pulse {
+    background-size: 200% auto;
+    animation: gradientPulse 3s ease infinite;
+  }
+}
+
+/* Carousel overrides */
+.ant-carousel .slick-slide > div {
+  height: 100vh;
+  width: 100vw;
+}
+
+.css-dev-only-do-not-override-m8pez2.ant-carousel .slick-prev::after,
+.css-dev-only-do-not-override-m8pez2.ant-carousel .slick-next::after,
+.ant-carousel .slick-prev::after,
+.ant-carousel .slick-next::after {
+  display: none !important;
+}
+.css-dev-only-do-not-override-m8pez2.ant-carousel .slick-prev::before,
+.css-dev-only-do-not-override-m8pez2.ant-carousel .slick-next::before,
+.ant-carousel .slick-prev::before,
+.ant-carousel .slick-next::before {
+  display: none !important;
+}
+
+.ant-carousel .slick-next {
+  inset-inline-end: 34px !important;
+}
+
+.ant-btn.ant-btn-primary {
+  background: var(--color-primary);
+  padding: 10px 28px;
+  height: auto !important;
+}
+
+.category-card .ant-card {
+  border: none;
+  background: transparent;
+}
+.category-card .ant-card .ant-card-body {
+  padding: 0px;
+}
+.ant-card .ant-card-cover > * {
+  border-radius: 0px !important;
+}
+.ant-btn.card-btn {
+  background-color: rgb(var(--primary)) !important;
+  border-color: rgb(var(--primary)) !important;
+  color: white;
+}
+
+.ant-btn.card-btn:hover {
+  background-color: white !important;
+  border-color: white !important;
+  color: var(--primary) !important;
+  box-shadow: 0 4px 8px rgb(var(--primary) / 0.2),
+    0 4px 8px rgb(var(--primary) / 0.1);
+}
+.footer-link a {
+  color: white;
+  font-family: var(--font-poppins-medium);
+  font-size: medium;
+}
+.footer-link a:hover {
+  color: var(--color-yellow-primary);
+}
+
+/* Updated yellow-primary styles */
+.ant-input-affix-wrapper {
+  padding: 0px 0px 0px 12px !important;
+  border-radius: 0 !important;
+  border-color: var(--color-yellow-primary) !important;
+  background: transparent !important;
+  height: 48px;
+}
+
+.news-letter .ant-input-affix-wrapper > input.ant-input {
+  padding: 0px !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: var(--color-yellow-primary) !important;
+}
+
+/* Add placeholder styling */
+.news-letter .ant-input-affix-wrapper > input.ant-input::placeholder {
+  color: white !important;
+  opacity: 1 !important; /* Ensure full visibility */
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: var(--color-yellow-primary) !important;
+}
+
+.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+  border-color: var(--color-yellow-primary) !important;
+}
+
+@media (max-width: 767px) {
+  .ant-carousel .slick-next,
+  .ant-carousel .slick-prev {
+    top: 90% !important;
+  }
+}

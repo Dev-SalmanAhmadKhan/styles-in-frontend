@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Color definitions */
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-primary: rgb(var(--primary));
+  --color-black: rgb(var(--black));
+
+  /* Font definitions */
+  --font-family-philosopher: var(--font-philosopher-regular), serif;
+  --font-family-philosopher-bold: var(--font-philosopher-bold), serif;
+  --font-family-poppins: var(--font-poppins-regular), sans-serif;
+  --font-family-poppins-medium: var(--font-poppins-medium), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Custom properties */
+    --background: 255 255 255;
+    --foreground: 23 23 23;
+    --primary: 164 114 52;
+    --black: #000000;
+
+    /* Font variables */
+    --font-philosopher-regular: "Philosopher";
+    --font-philosopher-bold: "Philosopher";
+    --font-poppins-regular: "Poppins";
+    --font-poppins-medium: "Poppins";
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 10 10 10;
+      --foreground: 237 237 237;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family-poppins);
+    font-weight: 400;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .font-philosopher {
+    font-family: var(--font-family-philosopher);
+  }
+  .font-philosopher-bold {
+    font-family: var(--font-family-philosopher-bold);
+    font-weight: 700;
+  }
+  .font-poppins-medium {
+    font-family: var(--font-family-poppins-medium);
+    font-weight: 500;
+  }
 }
